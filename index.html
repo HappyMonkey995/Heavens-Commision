@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RobuxStore - Premium Digital Items</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #ffffff 100%);
+            color: black;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(0,0,0,0.1) 50%, transparent 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #000000, #333333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #000000, #333333);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #ffffff, #cccccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            justify-items: center;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            color: black;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateY(0) scale(1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: white;
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #000000, #333333);
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .card:hover .card-icon {
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            color: black;
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .card p {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #333;
+            margin-bottom: 25px;
+            transition: color 0.3s ease;
+        }
+
+        .card:hover .price {
+            color: white;
+        }
+
+        .robux-icon {
+            display: inline-block;
+            font-size: 1.8rem;
+            margin-right: 8px;
+            opacity: 0.8;
+        }
+
+        .buy-button {
+            background: linear-gradient(135deg, #333333, #000000);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: translateY(0);
+            font-size: 1rem;
+        }
+
+        .card:hover .buy-button {
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            color: black;
+            transform: translateY(-3px);
+        }
+
+        .buy-button:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content floating">
+            <h1>RobuxStore</h1>
+            <p>Premium digital items, accessories, and exclusive content</p>
+            <button class="cta-button">Explore Collection</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Premium Accessories</h2>
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-icon">👑</div>
+                <h3>Royal Crown</h3>
+                <p>Majestic golden crown with precious gems. Show your royal status in any world.</p>
+                <div class="price"><span class="robux-icon">R$</span>2,500</div>
+                <button class="buy-button">Purchase Now</button>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">🎩</div>
+                <h3>Gentleman's Hat</h3>
+                <p>Classic top hat for the distinguished avatar. Perfect for formal occasions.</p>
+                <div class="price"><span class="robux-icon">R$</span>1,200</div>
+                <button class="buy-button">Purchase Now</button>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">🕶️</div>
+                <h3>Neon Glasses</h3>
+                <p>Futuristic eyewear with customizable LED effects. Stand out from the crowd.</p>
+                <div class="price"><span class="robux-icon">R$</span>800</div>
+                <button class="buy-button">Purchase Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Exclusive Outfits</h2>
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-icon">🦸</div>
+                <h3>Hero Suit</h3>
+                <p>Complete superhero outfit with cape and emblem. Save the day in style.</p>
+                <div class="price"><span class="robux-icon">R$</span>3,500</div>
+                <button class="buy-button">Purchase Now</button>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">🎭</div>
+                <h3>Phantom Cloak</h3>
+                <p>Mysterious dark cloak with animated shadows. Perfect for stealth missions.</p>
+                <div class="price"><span class="robux-icon">R$</span>2,800</div>
+                <button class="buy-button">Purchase Now</button>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">✨</div>
+                <h3>Starlight Dress</h3>
+                <p>Elegant gown that sparkles like the night sky. Turn heads at any event.</p>
+                <div class="price"><span class="robux-icon">R$</span>4,200</div>
+                <button class="buy-button">Purchase Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Special Effects</h2>
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-icon">🔥</div>
+                <h3>Fire Wings</h3>
+                <p>Blazing wings that leave a trail of flames. Soar through worlds with power.</p>
+                <div class="price"><span class="robux-icon">R$</span>5,000</div>
+                <button class="buy-button">Purchase Now</button>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Lightning Aura</h3>
+                <p>Electric energy field that surrounds your avatar. Show your power level.</p>
+                <div class="price"><span class="robux-icon">R$</span>3,800</div>
+                <button class="buy-button">Purchase Now</button>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">❄️</div>
+                <h3>Ice Crystals</h3>
+                <p>Floating ice shards that orbit your avatar. Bring winter wherever you go.</p>
+                <div class="price"><span class="robux-icon">R$</span>2,900</div>
+                <button class="buy-button">Purchase Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add click handlers for purchase buttons
+        document.querySelectorAll('.buy-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const itemName = this.closest('.card').querySelector('h3').textContent;
+                const price = this.closest('.card').querySelector('.price').textContent;
+                alert(`Purchasing ${itemName} for ${price}!\n\nRedirecting to payment...`);
+            });
+        });
+
+        // Add smooth scroll for CTA button
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            document.querySelector('.section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Add subtle parallax effect to cards
+        document.addEventListener('mousemove', function(e) {
+            const cards = document.querySelectorAll('.card');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const cardX = (rect.left + rect.width / 2) / window.innerWidth;
+                const cardY = (rect.top + rect.height / 2) / window.innerHeight;
+                
+                const deltaX = (x - cardX) * 10;
+                const deltaY = (y - cardY) * 10;
+                
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    card.style.transform = `translateY(0) scale(1) rotateX(${deltaY * 0.5}deg) rotateY(${deltaX * 0.5}deg)`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
