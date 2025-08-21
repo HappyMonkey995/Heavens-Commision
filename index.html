@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RobuxStore - Premium Digital Items</title>
+    <title>Heaven's Commission - Online Store</title>
     <style>
         * {
             margin: 0;
@@ -16,6 +16,112 @@
             background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
             color: white;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+        }
+
+        .shape-circle {
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff, #cccccc);
+        }
+
+        .shape-square {
+            background: linear-gradient(135deg, #ffffff, #cccccc);
+            transform: rotate(45deg);
+        }
+
+        .shape-triangle {
+            width: 0;
+            height: 0;
+            background: transparent;
+        }
+
+        .shape-triangle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 50px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Shape animations */
+        @keyframes float1 {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.05;
+            }
+            25% {
+                transform: translateY(-100px) rotate(90deg);
+                opacity: 0.15;
+            }
+            50% {
+                transform: translateY(-50px) rotate(180deg);
+                opacity: 0.1;
+            }
+            75% {
+                transform: translateY(-150px) rotate(270deg);
+                opacity: 0.12;
+            }
+        }
+
+        @keyframes float2 {
+            0%, 100% {
+                transform: translateX(0px) rotate(0deg);
+                opacity: 0.08;
+            }
+            33% {
+                transform: translateX(100px) rotate(120deg);
+                opacity: 0.12;
+            }
+            66% {
+                transform: translateX(-50px) rotate(240deg);
+                opacity: 0.06;
+            }
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.1;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.05;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.15;
+            }
         }
 
         .hero {
@@ -115,7 +221,44 @@
             width: 100%;
         }
 
-        .card::before {
+        .card.popular {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffffff 50%, #fff8e1 100%);
+            border: 2px solid #ffc107;
+            box-shadow: 0 15px 50px rgba(255, 193, 7, 0.3);
+            padding-top: 50px;
+            position: relative;
+        }
+
+        .card.popular::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, transparent 50%, rgba(255, 193, 7, 0.1) 100%);
+            border-radius: 18px;
+            pointer-events: none;
+        }
+
+        .card.popular .popular-badge {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: #333;
+            padding: 6px 16px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+            z-index: 2;
+        }
+
+        .card:not(.popular)::before {
             content: '';
             position: absolute;
             top: 0;
@@ -126,7 +269,23 @@
             transition: left 0.6s ease;
         }
 
-        .card:hover::before {
+        .card:not(.popular):hover::before {
+            left: 100%;
+        }
+
+        .card.popular::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.3), transparent);
+            transition: left 0.6s ease;
+            z-index: 1;
+        }
+
+        .card.popular:hover::before {
             left: 100%;
         }
 
@@ -238,109 +397,178 @@
     </style>
 </head>
 <body>
+    <div class="animated-bg" id="animatedBg"></div>
+    
     <div class="hero">
         <div class="hero-content floating">
-            <h1>RobuxStore</h1>
-            <p>Premium digital items, accessories, and exclusive content</p>
-            <button class="cta-button">Explore Collection</button>
+            <h1>Heaven's Commission</h1>
+            <p>PLACEHOLDER, PLACEHOLDER, and PLACEHOLDER</p>
+            <button class="cta-button">Explore Store</button>
         </div>
     </div>
 
     <div class="section">
-        <h2 class="section-title">Premium Accessories</h2>
+        <h2 class="section-title">Place Holder</h2>
         <div class="cards-container">
             <div class="card">
                 <div class="card-icon">👑</div>
-                <h3>Royal Crown</h3>
-                <p>Majestic golden crown with precious gems. Show your royal status in any world.</p>
+                <h3>Place Holder</h3>
+                <p>Place Holder</p>
                 <div class="price"><span class="robux-icon">R$</span>2,500</div>
-                <button class="buy-button">Purchase Now</button>
+                <button class="buy-button" onclick="window.open('https://example.com/purchase/royal-crown', '_blank')">Purchase Now</button>
             </div>
             
-            <div class="card">
+            <div class="card popular">
+                <div class="popular-badge">Most Popular</div>
                 <div class="card-icon">🎩</div>
-                <h3>Gentleman's Hat</h3>
-                <p>Classic top hat for the distinguished avatar. Perfect for formal occasions.</p>
+                <h3>Place Holder</h3>
+                <p>Place Holder</p>
                 <div class="price"><span class="robux-icon">R$</span>1,200</div>
-                <button class="buy-button">Purchase Now</button>
+                <button class="buy-button" onclick="window.open('https://example.com/purchase/gentlemans-hat', '_blank')">Purchase Now</button>
             </div>
             
             <div class="card">
                 <div class="card-icon">🕶️</div>
-                <h3>Neon Glasses</h3>
-                <p>Futuristic eyewear with customizable LED effects. Stand out from the crowd.</p>
+                <h3>Place Holder</h3>
+                <p>Place Holder</p>
                 <div class="price"><span class="robux-icon">R$</span>800</div>
-                <button class="buy-button">Purchase Now</button>
+                <button class="buy-button" onclick="window.open('https://example.com/purchase/neon-glasses', '_blank')">Purchase Now</button>
             </div>
         </div>
     </div>
 
     <div class="section">
-        <h2 class="section-title">Exclusive Outfits</h2>
+        <h2 class="section-title">Place Holder</h2>
         <div class="cards-container">
             <div class="card">
                 <div class="card-icon">🦸</div>
-                <h3>Hero Suit</h3>
-                <p>Complete superhero outfit with cape and emblem. Save the day in style.</p>
+                <h3>Place Holder</h3>
+                <p>Place Holder</p>
                 <div class="price"><span class="robux-icon">R$</span>3,500</div>
-                <button class="buy-button">Purchase Now</button>
+                <button class="buy-button" onclick="window.open('https://example.com/purchase/hero-suit', '_blank')">Purchase Now</button>
             </div>
             
-            <div class="card">
+            <div class="card popular">
+                <div class="popular-badge">Most Popular</div>
                 <div class="card-icon">🎭</div>
-                <h3>Phantom Cloak</h3>
-                <p>Mysterious dark cloak with animated shadows. Perfect for stealth missions.</p>
+                <h3>Place Holder</h3>
+                <p>Place Holder</p>
                 <div class="price"><span class="robux-icon">R$</span>2,800</div>
-                <button class="buy-button">Purchase Now</button>
+                <button class="buy-button" onclick="window.open('https://example.com/purchase/phantom-cloak', '_blank')">Purchase Now</button>
             </div>
             
             <div class="card">
                 <div class="card-icon">✨</div>
-                <h3>Starlight Dress</h3>
-                <p>Elegant gown that sparkles like the night sky. Turn heads at any event.</p>
+                <h3>Place Holder</h3>
+                <p>Place Holder</p>
                 <div class="price"><span class="robux-icon">R$</span>4,200</div>
-                <button class="buy-button">Purchase Now</button>
+                <button class="buy-button" onclick="window.open('https://example.com/purchase/starlight-dress', '_blank')">Purchase Now</button>
             </div>
         </div>
     </div>
 
     <div class="section">
-        <h2 class="section-title">Special Effects</h2>
+        <h2 class="section-title">Place Holder</h2>
         <div class="cards-container">
             <div class="card">
                 <div class="card-icon">🔥</div>
-                <h3>Fire Wings</h3>
-                <p>Blazing wings that leave a trail of flames. Soar through worlds with power.</p>
+                <h3>Place Holder</h3>
+                <p>Place Holder</p>
                 <div class="price"><span class="robux-icon">R$</span>5,000</div>
-                <button class="buy-button">Purchase Now</button>
+                <button class="buy-button" onclick="window.open('https://example.com/purchase/fire-wings', '_blank')">Purchase Now</button>
             </div>
             
-            <div class="card">
+            <div class="card popular">
+                <div class="popular-badge">Most Popular</div>
                 <div class="card-icon">⚡</div>
-                <h3>Lightning Aura</h3>
-                <p>Electric energy field that surrounds your avatar. Show your power level.</p>
+                <h3>Place Holder</h3>
+                <p>Place Holder</p>
                 <div class="price"><span class="robux-icon">R$</span>3,800</div>
-                <button class="buy-button">Purchase Now</button>
+                <button class="buy-button" onclick="window.open('https://example.com/purchase/lightning-aura', '_blank')">Purchase Now</button>
             </div>
             
             <div class="card">
                 <div class="card-icon">❄️</div>
-                <h3>Ice Crystals</h3>
-                <p>Floating ice shards that orbit your avatar. Bring winter wherever you go.</p>
+                <h3>Place Holder</h3>
+                <p>Place Holder</p>
                 <div class="price"><span class="robux-icon">R$</span>2,900</div>
-                <button class="buy-button">Purchase Now</button>
+                <button class="buy-button" onclick="window.open('https://example.com/purchase/ice-crystals', '_blank')">Purchase Now</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Add click handlers for purchase buttons
-        document.querySelectorAll('.buy-button').forEach(button => {
+        // Create animated background shapes
+        function createAnimatedBackground() {
+            const bg = document.getElementById('animatedBg');
+            const shapes = ['circle', 'square', 'triangle'];
+            const animations = ['float1', 'float2', 'drift', 'pulse'];
+            
+            // Create 20 random shapes
+            for (let i = 0; i < 20; i++) {
+                const shape = document.createElement('div');
+                const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
+                const animation = animations[Math.floor(Math.random() * animations.length)];
+                
+                shape.className = `shape shape-${shapeType}`;
+                
+                // Random size
+                const size = Math.random() * 60 + 20;
+                shape.style.width = size + 'px';
+                shape.style.height = size + 'px';
+                
+                // Random position
+                shape.style.left = Math.random() * 100 + '%';
+                shape.style.top = Math.random() * 100 + '%';
+                
+                // Random animation
+                const duration = Math.random() * 10 + 10; // 10-20 seconds
+                const delay = Math.random() * 5; // 0-5 seconds delay
+                
+                shape.style.animation = `${animation} ${duration}s ease-in-out ${delay}s infinite`;
+                
+                bg.appendChild(shape);
+            }
+            
+            // Create some special drifting shapes that move from bottom to top
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const driftShape = document.createElement('div');
+                    const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
+                    
+                    driftShape.className = `shape shape-${shapeType}`;
+                    
+                    const size = Math.random() * 40 + 15;
+                    driftShape.style.width = size + 'px';
+                    driftShape.style.height = size + 'px';
+                    driftShape.style.left = Math.random() * 100 + '%';
+                    driftShape.style.bottom = '-100px';
+                    
+                    const duration = Math.random() * 15 + 15;
+                    driftShape.style.animation = `drift ${duration}s linear infinite`;
+                    
+                    bg.appendChild(driftShape);
+                    
+                    // Remove shape after animation to prevent memory buildup
+                    setTimeout(() => {
+                        if (driftShape.parentNode) {
+                            driftShape.parentNode.removeChild(driftShape);
+                        }
+                    }, duration * 1000);
+                }, i * 2000); // Stagger creation
+            }
+        }
+
+        // Initialize background on load
+        window.addEventListener('load', createAnimatedBackground);
+
+        // Add click handlers for purchase buttons (fallback for non-onclick buttons)
+        document.querySelectorAll('.buy-button:not([onclick])').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.stopPropagation();
                 const itemName = this.closest('.card').querySelector('h3').textContent;
-                const price = this.closest('.card').querySelector('.price').textContent;
-                alert(`Purchasing ${itemName} for ${price}!\n\nRedirecting to payment...`);
+                const slug = itemName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '');
+                window.open(`https://example.com/purchase/${slug}`, '_blank');
             });
         });
 
